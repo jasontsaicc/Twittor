@@ -1,0 +1,22 @@
+alembic==1.6.5
+certifi==2021.5.30
+click @ file:///tmp/build/80754af9/click_1621604852318/work
+Flask==1.0.2
+Flask-Migrate==3.1.0
+Flask-Script==2.0.6
+Flask-SQLAlchemy==2.3.2
+Flask-WTF==0.15.1
+greenlet==1.1.1
+importlib-metadata @ file:///opt/concourse/worker/volumes/live/3027f664-46d5-41d9-789e-0b7d1ed46519/volume/importlib-metadata_1617877364314/work
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///tmp/build/80754af9/jinja2_1624781299557/work
+Mako==1.1.4
+MarkupSafe @ file:///opt/concourse/worker/volumes/live/16a820f0-3874-45b4-6b79-5313238ead21/volume/markupsafe_1621528157387/work
+python-dateutil==2.8.2
+python-editor==1.0.4
+six==1.16.0
+SQLAlchemy==1.4.22
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1624965014186/work
+Werkzeug @ file:///home/ktietz/src/ci/werkzeug_1611932622770/work
+WTForms==2.3.3
+zipp @ file:///tmp/build/80754af9/zipp_1625570634446/work
