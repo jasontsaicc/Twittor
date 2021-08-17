@@ -9,7 +9,7 @@ migrate = Migrate()
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 
-from twittor.route import index, login, logout
+from twittor.route import index, login, logout, register
 
 def create_app():
     app = Flask(__name__)
@@ -23,5 +23,5 @@ def create_app():
     app.add_url_rule('/index', 'index', index)
     app.add_url_rule('/', 'index', index)
     app.add_url_rule('/login', 'login', login, methods=['GET','POST'])
-    app.add_url_rule('/logout', 'logout', logout)
+    app.add_url_rule('/register', 'register', register, methods=['GET','POST'])
     return app
