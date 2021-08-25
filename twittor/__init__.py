@@ -20,8 +20,8 @@ def create_app():
 
     login_manager.init_app(app)
 
-    app.add_url_rule('/index', 'index', index)
-    app.add_url_rule('/', 'index', index)
+    app.add_url_rule('/index', 'index', methods=['GET','POST'])
+    app.add_url_rule('/', 'index', index, methods=['GET','POST'])
     app.add_url_rule('/login', 'login', login, methods=['GET','POST'])
     app.add_url_rule('/logout', 'logout', logout)
     app.add_url_rule('/register', 'register', register, methods=['GET','POST'])
