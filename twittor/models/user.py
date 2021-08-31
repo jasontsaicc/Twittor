@@ -6,14 +6,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from flask import current_app
 import jwt
-from twittor.models.tweet import Tweet
 
 from twittor import db, login_manager
+from twittor.models.tweet import Tweet
 
 followers = db.Table('followers',
-                     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-                     )
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
 
 
 class User(UserMixin, db.Model):
@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     about_me = db.Column(db.String(120))
     create_time = db.Column(db.DateTime, default=datetime.utcnow)
+    is_activated = db.Column(db.Boolean, default=False)
 
     tweets = db.relationship('Tweet', backref='author', lazy='dynamic')
 
@@ -36,10 +37,10 @@ class User(UserMixin, db.Model):
         return 'id={}, username={}, email={}, password_hash={}'.format(
             self.id, self.username, self.email, self.password_hash
         )
-
+    
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
-
+    
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -63,7 +64,7 @@ class User(UserMixin, db.Model):
     def own_and_followed_tweets(self):
         followed = Tweet.query.join(
             followers, (followers.c.followed_id == Tweet.user_id)).filter(
-            followers.c.follower_id == self.id)
+                followers.c.follower_id == self.id)
         own = Tweet.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Tweet.create_time.desc())
 
